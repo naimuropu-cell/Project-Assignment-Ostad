@@ -60,7 +60,7 @@ During exploratory testing, when a user immediately clicks back into the field a
 - **Module**: Admin / User Management
 - **Severity**: Medium
 - **Priority**: Medium
-- **Reported By**: SQA Manual Tester
+- **Reported By**: naimur
 - **Date Reported**: 2026-09-12
 - **Status**: Open
 - **Environment**: Windows 11, Chromium Browser, OrangeHRM OS 5.9
