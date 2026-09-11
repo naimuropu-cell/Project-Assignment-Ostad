@@ -165,4 +165,4 @@ Open this file directly in any web browser to view response times, headers, payl
 Located inside the [`manual-testing/`](./manual-testing/) folder:
 1. **[SQA_Manual_Test_Cases.xlsx](./manual-testing/SQA_Manual_Test_Cases.xlsx)** & **[.csv](./manual-testing/SQA_Manual_Test_Cases.csv)**: 12 manual test cases across Login, PIM, Admin, and Leave modules covering positive, negative, security, and boundary scenarios not duplicated in Part A.
 2. **[Traceability_Matrix.md](./manual-testing/Traceability_Matrix.md)**: Requirements Traceability Matrix mapping all 16 automated and manual test cases to system features.
-3. **[Bug_Report_OrangeHRM.md](./manual-testing/Bug_Report_OrangeHRM.md)**: Formal defect report (`BUG-ORANGE-001`) with severity, environment, steps to reproduce, expected vs actual result, and attached screenshot evidence.
+3. **[Bug_Report_OrangeHRM.md](./manual-testing/Bug_Report_OrangeHRM.md)**: Formal defect reports (`BUG-ORANGE-001` & `BUG-ORANGE-002`) covering Authentication and Admin modules with severity, environment, steps to reproduce, expected vs actual results, and attached screenshot evidence.

@@ -1,11 +1,12 @@
 # Requirements Traceability Matrix (RTM)
 
-This document maps requirements and features across the OrangeHRM system under test to their corresponding automated and manual test cases.
+This document maps requirements and features across the OrangeHRM system under test to their corresponding automated tests, manual test cases, and logged defects.
 
-| Module | Feature / Requirement | Test Type | Test Case ID | Test Case Title / Scenario Description | Status |
+| Module | Feature / Requirement | Test Type | Test Case / Bug ID | Scenario Description | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Auth / Login** | Invalid login credential error handling | Automation | `Q1-AUT-001` | Verify error message on invalid username/password | **Pass** |
 | **Auth / Login** | Mandatory field validation (empty inputs) | Manual | `TC-LOGIN-001` | Verify 'Required' error on submitting empty form | **Pass** |
+| **Auth / Login** | Real-time validation error state handling | Defect | `BUG-ORANGE-001` | 'Required' error persists during active typing until blur | **Open** |
 | **Auth / Login** | Password security & masking | Manual | `TC-LOGIN-002` | Verify password characters masked by default | **Pass** |
 | **Auth / Login** | Session protection & route guarding | Manual | `TC-LOGIN-003` | Verify unauthorized direct URL access redirects to login | **Pass** |
 | **PIM** | Add employee with random data & search in list | Automation | `Q2-AUT-002` | Add employee with dynamic data, search by ID, logout | **Pass** |
@@ -13,6 +14,7 @@ This document maps requirements and features across the OrangeHRM system under t
 | **PIM** | Boundary testing: Names with special characters | Manual | `TC-PIM-002` | Verify names with hyphens and apostrophes save cleanly | **Pass** |
 | **PIM** | Uniqueness constraint on Employee ID | Manual | `TC-PIM-003` | Verify duplicate Employee ID is rejected | **Pass** |
 | **Admin** | User search, role/status update, persistence | Automation | `Q3-AUT-003` | Search user, edit role/status, verify persistence on reload | **Pass** |
+| **Admin** | Search input validation & grid synchronization | Defect | `BUG-ORANGE-002` | Search retains previous table results when input is Invalid | **Open** |
 | **Admin** | Safe search input & SQL/script injection defense | Manual | `TC-ADMIN-001` | Verify search field handles special/SQL characters safely | **Pass** |
 | **Admin** | Password complexity policy enforcement | Manual | `TC-ADMIN-002` | Verify weak password displays complexity warnings | **Pass** |
 | **Admin** | Session safety: prevent self-deletion | Manual | `TC-ADMIN-003` | Verify logged-in admin cannot delete their own account | **Pass** |
@@ -23,7 +25,6 @@ This document maps requirements and features across the OrangeHRM system under t
 
 ---
 **Summary**:
-- Total Requirements Covered: 16
-- Automated Scenarios: 4
-- Manual Test Cases: 12
-- Execution Coverage: 100%
+- Total Automated Scenarios: 4 (100% Pass)
+- Total Manual Test Cases: 12 (100% Pass)
+- Formal Defects Logged: 2 (`BUG-ORANGE-001` & `BUG-ORANGE-002` with screenshots)
