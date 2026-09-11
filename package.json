@@ -1,0 +1,27 @@
+{
+  "name": "project-assignment-ostad",
+  "version": "1.0.0",
+  "description": "SQA Project Assignment for Ostad",
+  "scripts": {
+    "test:ui": "playwright test automation/tests/q*.spec.ts",
+    "test:ui:headed": "playwright test automation/tests/q*.spec.ts --headed",
+    "test:q1": "playwright test automation/tests/q1-invalid-login.spec.ts",
+    "test:q2": "playwright test automation/tests/q2-add-employee.spec.ts",
+    "test:q3": "playwright test automation/tests/q3-admin-user.spec.ts",
+    "test:q4": "playwright test automation/tests/q4-apply-leave.spec.ts",
+    "test:suite": "playwright test automation/tests/all-scenarios.spec.ts",
+    "test:api": "node api-testing/runner/run-api.js",
+    "test:all": "playwright test automation/tests/all-scenarios.spec.ts && node api-testing/runner/run-api.js",
+    "report:ui": "playwright show-report"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^22.20.2",
+    "allure-playwright": "^3.12.1",
+    "newman": "^6.2.2",
+    "newman-reporter-htmlextra": "^1.23.1",
+    "typescript": "^7.0.2",
+    "xlsx": "^0.18.5"
+  }
+}
