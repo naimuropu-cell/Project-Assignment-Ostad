@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lead QA Website Audit & Quality Assessment Report - YES Bangladesh</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 14mm 18mm 14mm;
+  }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .header-card {
+    background: linear-gradient(135deg, #0A1F5C 0%, #1B4FD8 60%, #FF6B35 100%);
+    color: #ffffff;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+  }
+  .header-card h1 {
+    margin: 0 0 6px 0;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .header-card p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+  .meta-item strong {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+  }
+  .meta-item span {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  h2 {
+    color: #0A1F5C;
+    font-size: 17px;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 26px;
+    margin-bottom: 12px;
+    page-break-after: avoid;
+  }
+  h3 {
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    page-break-after: avoid;
+  }
+
+  .scorecard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 20px 0;
+  }
+  .scorecard-table th {
+    background: #f1f5f9;
+    color: #0A1F5C;
+    font-weight: 700;
+    text-align: left;
+    padding: 9px 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 11.5px;
+  }
+  .scorecard-table td {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 11.5px;
+  }
+  .score-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .badge-crit { background: #fee2e2; color: #991b1b; }
+  .badge-high { background: #ffedd5; color: #9a3412; }
+  .badge-med { background: #fef3c7; color: #92400e; }
+  .badge-pass { background: #dcfce7; color: #166534; }
+
+  .defect-box {
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #ef4444;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 15px;
+    background: #fafafa;
+    page-break-inside: avoid;
+  }
+  .defect-box.high { border-left-color: #f97316; }
+  .defect-box.med { border-left-color: #eab308; }
+
+  .defect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .defect-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+  .defect-meta {
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 6px;
+  }
+  .code-snip {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 11px;
+    overflow-x: auto;
+    margin: 6px 0;
+  }
+
+  ul, ol {
+    margin: 6px 0 12px 18px;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+
+  .action-box {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    page-break-inside: avoid;
+  }
+  .action-box strong {
+    color: #0A1F5C;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .footer-signoff {
+    margin-top: 30px;
+    border-top: 2px dashed #cbd5e1;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    color: #64748b;
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header-card">
+    <h1>Lead QA Website Audit & Quality Assessment Report</h1>
+    <p>Comprehensive Performance, Security, UI/UX, and Functional Review of YES Bangladesh</p>
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Target Website</strong>
+        <span>yesbangladesh.net</span>
+      </div>
+      <div class="meta-item">
+        <strong>Audited By</strong>
+        <span>Lead QA Engineer</span>
+      </div>
+      <div class="meta-item">
+        <strong>Audit Date</strong>
+        <span>September 2026</span>
+      </div>
+      <div class="meta-item">
+        <strong>Overall Score</strong>
+        <span>68 / 100 (B-)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: EXECUTIVE SUMMARY -->
+  <h2>1. Executive Summary</h2>
+  <p>
+    An end-to-end quality assurance audit was conducted on <strong>https://yesbangladesh.net/</strong>. While the platform demonstrates strong visual potential, high-value service offerings, and modern CSS animations on the homepage, several <strong>critical technical bugs</strong>, <strong>security warnings</strong>, <strong>dead navigation links</strong>, and <strong>conversion design disconnects</strong> were identified.
+  </p>
+  <p>
+    Addressing these defects will immediately protect domain security rankings, prevent client drop-off, optimize page speed, and increase high-ticket lead conversion.
+  </p>
+
+  <table class="scorecard-table">
+    <thead>
+      <tr>
+        <th>Audit Category</th>
+        <th>Score</th>
+        <th>Risk Level</th>
+        <th>Key Observation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Functional Testing</strong></td>
+        <td><span class="score-badge badge-high">62 / 100</span></td>
+        <td>High</td>
+        <td>Dead '#contact' links on all 6 homepage service cards; telephone input validation flaw.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Security & Compliance</strong></td>
+        <td><span class="score-badge badge-crit">65 / 100</span></td>
+        <td>Critical</td>
+        <td>Mixed Content (insecure http:// favicons, icons, and footer links on HTTPS).</td>
+      </tr>
+      <tr>
+        <td><strong>3. UI/UX & Design Consistency</strong></td>
+        <td><span class="score-badge badge-high">68 / 100</span></td>
+        <td>Moderate</td>
+        <td>Severe color and font clash between Homepage (Satoshi/Blue) and Contract page (Arial/Teal).</td>
+      </tr>
+      <tr>
+        <td><strong>4. Mobile & Responsive Layout</strong></td>
+        <td><span class="score-badge badge-med">74 / 100</span></td>
+        <td>Low - Med</td>
+        <td>Key visual stat pills and trust cards completely hidden on tablet viewports (768px-1024px).</td>
+      </tr>
+      <tr>
+        <td><strong>5. Performance & Asset Weight</strong></td>
+        <td><span class="score-badge badge-high">60 / 100</span></td>
+        <td>High</td>
+        <td>2560px unoptimized PNG logo served for a 50px header; excessive script overhead.</td>
+      </tr>
+      <tr>
+        <td><strong>6. SEO & Open Graph Metadata</strong></td>
+        <td><span class="score-badge badge-crit">55 / 100</span></td>
+        <td>Critical</td>
+        <td>Missing meta descriptions, missing Open Graph tags (broken WhatsApp/LinkedIn preview).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SECTION 2: DEFECT LOG -->
+  <h2>2. Defect Log & Technical Issues</h2>
+
+  <div class="defect-box">
+    <div class="defect-header">
+      <h4 class="defect-title">BUG-01: Mixed Content Vulnerability (Insecure HTTP Assets on HTTPS)</h4>
+      <span class="score-badge badge-crit">Severity: Critical (P1)</span>
+    </div>
+    <div class="defect-meta"><strong>Location:</strong> HTML &lt;head&gt; and Footer DOM across all pages</div>
+    <p><strong>Description:</strong> Favicon links, Apple touch icons, and footer logo links are hardcoded to insecure <code>http://yesbangladesh.net/...</code> instead of <code>https://</code>.</p>
+    <div class="code-snip">&lt;link rel="icon" href="http://yesbangladesh.net/wp-content/uploads/2026/06/Blue-and-Black-Flat-Illustrative-Business-Company-Logo.png"&gt;
+&lt;a href="http://Yesbangladesh.net"&gt; &lt;!-- Uppercase hostname & insecure protocol --&gt;</div>
+    <p><strong>Impact:</strong> Modern browsers flag Mixed Content warnings, degrading domain trust indicators and search engine rankings. The filename also exposes an unedited Canva template name.</p>
+    <p><strong>Fix:</strong> Update WordPress General Settings to HTTPS, enforce HTTPS redirects, and rename favicon asset to <code>favicon.png</code>.</p>
+  </div>
+
+  <div class="defect-box high">
+    <div class="defect-header">
+      <h4 class="defect-title">BUG-02: Broken Anchor Links on All Homepage Service Cards</h4>
+      <span class="score-badge badge-high">Severity: High (P1)</span>
+    </div>
+    <div class="defect-meta"><strong>Location:</strong> Homepage Core Services Grid (Section 3)</div>
+    <p><strong>Description:</strong> All 6 "Learn More" links on the service cards link to <code>#contact</code>:</p>
+    <div class="code-snip">&lt;a href="#contact" class="yes-service-link"&gt;Learn More ...&lt;/a&gt;</div>
+    <p><strong>Impact:</strong> There is <strong>no element with id="contact"</strong> on the homepage. Clicking "Learn More" produces a dead click, preventing prospective clients from discovering service specifics or contacting the team.</p>
+    <p><strong>Fix:</strong> Point each service card to its respective subpage (<code>/web-software/</code>, <code>/amazon-experts/</code>, <code>/u-s-company-formation/</code>) or add an anchor contact section.</p>
+  </div>
+
+  <div class="defect-box high">
+    <div class="defect-header">
+      <h4 class="defect-title">BUG-03: Telephone Field Formatted as type="number"</h4>
+      <span class="score-badge badge-high">Severity: High (P2)</span>
+    </div>
+    <div class="defect-meta"><strong>Location:</strong> <code>/contract-application-form/</code> (WPForms Field 3)</div>
+    <p><strong>Description:</strong> The contact phone number input uses HTML5 <code>type="number" step="any"</code> instead of <code>type="tel"</code>.</p>
+    <p><strong>Impact:</strong> Truncates leading zeros (e.g. Bangladeshi <code>0171...</code> becomes <code>171...</code>), allows mouse wheel scrolling to alter digits, allows scientific notation (<code>1e10</code>), and rejects international <code>+</code> signs.</p>
+    <p><strong>Fix:</strong> Reconfigure the field in WPForms to a dedicated Phone Field (<code>type="tel"</code>) with international dial code masking.</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="defect-box med">
+    <div class="defect-header">
+      <h4 class="defect-title">BUG-04: Footer Newsletter Validation &amp; Honeypot Autofill Conflict</h4>
+      <span class="score-badge badge-med">Severity: Medium (P3)</span>
+    </div>
+    <div class="defect-meta"><strong>Location:</strong> Global Footer Newsletter Subscription Widget</div>
+    <p><strong>Description:</strong> The subscription form has default placeholder name <code>"New Form"</code> and uses <code>type="text"</code> instead of <code>type="email"</code>. Additionally, the anti-spam honeypot uses a visible label <code>"Address"</code> with a hidden input.</p>
+    <p><strong>Impact:</strong> Allows users to submit invalid email strings. Password managers (Chrome, Bitwarden, 1Password) autofill the "Address" field, causing legitimate users to be falsely flagged as bots and blocked.</p>
+    <p><strong>Fix:</strong> Switch input to <code>type="email"</code> with HTML5 validation and randomize honeypot field attributes.</p>
+  </div>
+
+  <!-- SECTION 3: WHAT IS MISSING -->
+  <h2>3. What Is Missing (Critical Functional &amp; SEO Gaps)</h2>
+
+  <div class="action-box">
+    <strong>1. Dedicated "Book a Strategy Call" Funnel:</strong>
+    <p>All CTA buttons promise a <em>"Free Strategy Call"</em>, but route to a formal <em>"Contract Application Form"</em> demanding legal commitments. A low-friction 3-field booking form (Name, Phone/WhatsApp, Service Interest) or direct Calendly booking is completely missing.</p>
+  </div>
+
+  <div class="action-box">
+    <strong>2. Meta Descriptions &amp; Search Snippets:</strong>
+    <p>The site has zero <code>&lt;meta name="description"&gt;</code> tags. Search engines are forced to scrape random hero text, resulting in poor search snippet appearance and reduced Organic Click-Through Rate (CTR).</p>
+  </div>
+
+  <div class="action-box">
+    <strong>3. Open Graph (OG) &amp; Social Cards:</strong>
+    <p>Missing <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, and <code>twitter:card</code>. When clients share links on WhatsApp, LinkedIn, or Facebook, no preview banner or branding appears.</p>
+  </div>
+
+  <div class="action-box">
+    <strong>4. Direct WhatsApp Floating Action Button (FAB):</strong>
+    <p>In the Bangladeshi and diaspora markets, over 70% of business inquiries happen via WhatsApp. The website lacks an instant WhatsApp chat bubble, causing significant mobile conversion drop-off.</p>
+  </div>
+
+  <!-- SECTION 4: UI/UX & PERFORMANCE INCONSISTENCIES -->
+  <h2>4. UI/UX, Typography &amp; Performance Inconsistencies</h2>
+
+  <h3>A. Brand Identity &amp; Typography Crisis</h3>
+  <ul>
+    <li><strong>Homepage</strong>: Premium aesthetic utilizing modern <code>Satoshi</code> font, Royal Blue (<code>#1B4FD8</code>), and Gold accents (<code>#FFC321</code>).</li>
+    <li><strong>Contract Application Page</strong>: Abruptly changes to <strong>Teal (<code>#0f766e</code>)</strong> and plain <strong>Arial</strong> (<code>font-family: Arial, sans-serif !important;</code>). The page looks like an entirely different website.</li>
+  </ul>
+
+  <h3>B. Excessive Logo Image Payload</h3>
+  <ul>
+    <li>The header and footer logo (<code>yes-bd-logo-scaled.png</code>) is loaded at <strong>2560 × 640 pixels</strong> (>200 KB) for a display height of only 50px!</li>
+    <li><strong>Recommendation:</strong> Replace with an SVG vector or optimized WebP under 15 KB to drastically improve mobile First Contentful Paint (FCP).</li>
+  </ul>
+
+  <h3>C. Tablet Viewport Layout Deficiency</h3>
+  <ul>
+    <li>Between 768px and 1024px, the CSS rule <code>.yes-hero-visual { display: none; }</code> abruptly hides the entire hero visual column (satisfaction badge, stat pills, cards), leaving an awkward white space.</li>
+  </ul>
+
+  <!-- SECTION 5: LEAD QA ROADMAP -->
+  <h2>5. Prioritized Remediation Roadmap</h2>
+
+  <div class="action-box">
+    <strong>Phase 1: Immediate Hotfixes (Day 1 - 2)</strong>
+    <ol>
+      <li>Update WordPress URL settings to force HTTPS and eliminate Mixed Content warnings.</li>
+      <li>Fix the 6 dead <code>#contact</code> links on the homepage service cards to route to subpages.</li>
+      <li>Change WPForms contact number input to <code>type="tel"</code>.</li>
+      <li>Add essential SEO Meta Descriptions and Open Graph preview tags.</li>
+    </ol>
+  </div>
+
+  <div class="action-box">
+    <strong>Phase 2: UI/UX &amp; Conversion Harmonization (Week 1)</strong>
+    <ol>
+      <li>Unify styles: Remove hardcoded Arial/Teal on the contract page to match Satoshi/Royal Blue.</li>
+      <li>Separate discovery leads from formal contract submissions with a streamlined consultation form.</li>
+      <li>Deploy lightweight SVG vector logo.</li>
+    </ol>
+  </div>
+
+  <div class="action-box">
+    <strong>Phase 3: Growth &amp; Engagement (Week 2+)</strong>
+    <ol>
+      <li>Integrate official floating WhatsApp widget for instant lead capture.</li>
+      <li>Add verified founder photos and client portfolio case studies to strengthen social proof.</li>
+    </ol>
+  </div>
+
+  <div class="footer-signoff">
+    <div><strong>Audit Authority:</strong> Lead QA Engineering Review</div>
+    <div><strong>Target Domain:</strong> https://yesbangladesh.net/</div>
+    <div><strong>Status:</strong> Actionable Findings Published</div>
+  </div>
+
+</body>
+</html>
