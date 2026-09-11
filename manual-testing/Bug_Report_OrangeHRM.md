@@ -6,7 +6,7 @@
 - **Module**: Authentication / Login
 - **Severity**: Medium
 - **Priority**: High
-- **Reported By**: SQA Manual Tester
+- **Reported By**: naimur
 - **Date Reported**: 2026-09-11
 - **Status**: Open
 - **Environment**: Windows 11, Chromium (Version 120+), Web Application (OrangeHRM OS 5.9)
