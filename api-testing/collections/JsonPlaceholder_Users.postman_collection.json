@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "c1f7a28e-5b12-4c3e-8fa9-9a2d8e3b1234",
+    "name": "JSONPlaceholder Users API Tests",
+    "description": "API Automation suite for Ostad SQA Project Assignment (Part D). Validates GET all users, extracts user ID, and performs dynamic PUT update.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://jsonplaceholder.typicode.com",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "updatedName",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "updatedEmail",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "updatedCompany",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Step 1 & 2: GET All Users and Extract User ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status code is 200",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Validate response contains user data array",
+              "pm.test(\"Response contains user data array\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.be.an('array').that.is.not.empty;",
+              "});",
+              "",
+              "// Validate each user object includes id, name, and email",
+              "pm.test(\"Each user object includes id, name, and email\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    jsonData.forEach(function (user) {",
+              "        pm.expect(user).to.have.property('id');",
+              "        pm.expect(user).to.have.property('name');",
+              "        pm.expect(user).to.have.property('email');",
+              "    });",
+              "});",
+              "",
+              "// Step 2: Extract one user's id and store it in variable",
+              "var users = pm.response.json();",
+              "var selectedUser = users[0];",
+              "pm.collectionVariables.set(\"userId\", selectedUser.id.toString());",
+              "console.log(\"Extracted user id:\", selectedUser.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/users",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Step 3 & 4: PUT Update User with Dynamic Data",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Generate dynamic test data",
+              "var randomNum = Math.floor(Math.random() * 9000) + 1000;",
+              "var dynamicName = \"QA User \" + randomNum;",
+              "var dynamicEmail = \"qa_user_\" + randomNum + \"@example.com\";",
+              "var dynamicCompany = \"QA Solutions Inc \" + randomNum;",
+              "",
+              "pm.collectionVariables.set(\"updatedName\", dynamicName);",
+              "pm.collectionVariables.set(\"updatedEmail\", dynamicEmail);",
+              "pm.collectionVariables.set(\"updatedCompany\", dynamicCompany);"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status code is 200",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Validate returned id matches stored variable",
+              "pm.test(\"Returned id matches the stored variable\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    var expectedId = pm.collectionVariables.get(\"userId\");",
+              "    pm.expect(jsonData.id.toString()).to.eql(expectedId.toString());",
+              "});",
+              "",
+              "// Validate phone field is not empty",
+              "pm.test(\"Phone field is not empty\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.phone).to.be.a('string').and.to.have.lengthOf.at.least(1);",
+              "});",
+              "",
+              "// Validate updated fields match generated values",
+              "pm.test(\"Updated name, email, and company match generated values\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.name).to.eql(pm.collectionVariables.get(\"updatedName\"));",
+              "    pm.expect(jsonData.email).to.eql(pm.collectionVariables.get(\"updatedEmail\"));",
+              "    pm.expect(jsonData.company.name).to.eql(pm.collectionVariables.get(\"updatedCompany\"));",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"{{updatedName}}\",\n  \"email\": \"{{updatedEmail}}\",\n  \"phone\": \"1-770-736-8031 x56442\",\n  \"company\": {\n    \"name\": \"{{updatedCompany}}\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/users/{{userId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "{{userId}}"
+          ]
+        }
+      }
+    }
+  ]
+}
